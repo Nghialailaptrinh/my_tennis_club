@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  {% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+  
+  <table border='1'>
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  {% for x in mymembers %}
+    <tr>
+      <td>{{ x.id }}</td>
+        <td>{{ x.firstname }}</td>
+      <td>{{ x.lastname }}</td>
+    </tr>
+  {% endfor %}
+</table>
+  {% include 'footer.html' %}
+  <p>Check out the two templates to see what they look like, and views.py to see the reference to the child template.
+  </p>
+
+</body>
+
+</html>
