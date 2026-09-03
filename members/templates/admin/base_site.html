@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | My Tennis Club Admin{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'members/css/admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="club-branding">
+    <a href="{% url 'admin:index' %}">My Tennis Club</a>
+    <span>{% translate "Administration" %}</span>
+  </div>
+{% endblock %}
+
+{% block nav-global %}
+  <a class="view-site-button" href="{% url 'main' %}">{% translate "View website" %}</a>
+{% endblock %}
