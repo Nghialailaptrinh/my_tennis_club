@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
 {% load i18n static %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | My Tennis Club Admin{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | My Study Club Admin{% endblock %}
 
 {% block extrastyle %}
   {{ block.super }}
@@ -10,7 +10,7 @@
 
 {% block branding %}
   <div class="club-branding">
-    <a href="{% url 'admin:index' %}">My Tennis Club</a>
+    <a href="{% url 'admin:index' %}">My Study Club</a>
     <span>{% translate "Administration" %}</span>
   </div>
 {% endblock %}
