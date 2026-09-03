@@ -1,29 +1,35 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="{% static 'myglobal.css' %}">
-<body>
+{% extends "master.html" %}
 
+{% block title %}Member table | My Tennis Club{% endblock %}
+
+{% block content %}
   {% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
-  
-  <table border='1'>
-  <tr>
-    <th>ID</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
-  </tr>
-  {% for x in mymembers %}
-    <tr>
-      <td>{{ x.id }}</td>
-        <td>{{ x.firstname }}</td>
-      <td>{{ x.lastname }}</td>
-    </tr>
-  {% endfor %}
-</table>
-  {% include 'footer.html' %}
-  <p>Check out the two templates to see what they look like, and views.py to see the reference to the child template.
-  </p>
 
-</body>
-
-</html>
+  <div class="card shadow-sm">
+    <div class="card-header bg-white">
+      <h1 class="h3 mb-0">Member table</h1>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in mymembers %}
+            <tr>
+              <td>{{ x.id }}</td>
+              <td>{{ x.firstname }}</td>
+              <td>{{ x.lastname }}</td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="3" class="text-center text-secondary py-4">There are no members yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

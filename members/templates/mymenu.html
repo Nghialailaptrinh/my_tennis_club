@@ -1,1 +1,10 @@
-<div>HOME | {{ me }} | ABOUT | FORUM | {{ sponsor }}</div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary rounded mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">{{ me }}</span>
+    <ul class="navbar-nav ms-auto flex-row gap-3">
+      <li class="nav-item"><a class="nav-link" href="{% url 'main' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'members' %}">Members</a></li>
+      <li class="nav-item"><span class="nav-link disabled">{{ sponsor }}</span></li>
+    </ul>
+  </div>
+</nav>

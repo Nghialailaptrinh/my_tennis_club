@@ -1,17 +1,26 @@
 {% extends "master.html" %}
 
-{% block title %}
-  My Tennis Club - List of all members
-{% endblock %}
-
+{% block title %}Members | My Tennis Club{% endblock %}
 
 {% block content %}
-  <div class="mycard">
-    <h1>Members</h1>
-    <ul>
+  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-4">
+    <div>
+      <h1 class="mb-1">Members</h1>
+      <p class="text-secondary mb-0">Select a member to view their details.</p>
+    </div>
+    <span class="badge text-bg-primary rounded-pill fs-6">{{ mymembers|length }} members</span>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="list-group list-group-flush">
       {% for x in mymembers %}
-        <li onclick="window.location = 'details/{{ x.id }}'">{{ x.firstname }} {{ x.lastname }}</li>
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3" href="{% url 'details' x.slug %}">
+          <span class="fw-semibold">{{ x.firstname }} {{ x.lastname }}</span>
+          <span class="text-primary" aria-hidden="true">&rarr;</span>
+        </a>
+      {% empty %}
+        <div class="list-group-item py-4 text-center text-secondary">There are no members yet.</div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
 {% endblock %}

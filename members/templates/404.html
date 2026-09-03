@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-<title>Wrong address</title>
+{% extends "master.html" %}
 
-<body>
+{% block title %}Page not found | My Tennis Club{% endblock %}
 
-    <h1>Ooops!</h1>
-
-    <h2>I cannot find the file you requested!</h2>
-
-</body>
-
-</html>
+{% block content %}
+  <section class="text-center py-5">
+    <p class="display-1 fw-bold text-primary">404</p>
+    <h1 class="h2">Page not found</h1>
+    <p class="text-secondary mb-4">We could not find the page you requested.</p>
+    <a class="btn btn-primary" href="{% url 'main' %}">Return home</a>
+  </section>
+{% endblock %}

@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "master.html" %}
 
-<h1>Hello World!</h1>
-<p>Welcome to my first Django project!</p>
+{% block title %}Hello | My Tennis Club{% endblock %}
 
-</body>
-</html>
+{% block content %}
+  <section class="text-center py-5">
+    <h1>Hello World!</h1>
+    <p class="lead text-secondary">Welcome to my first Django project!</p>
+  </section>
+{% endblock %}
