@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member
+from .models import ClassRoom, Member, Teacher
 
 admin.site.site_header = "My Study Club Administration"
 admin.site.site_title = "My Study Club Admin"
@@ -18,3 +18,18 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Member, MemberAdmin)
+
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
+    list_display = ("firstname", "lastname", "phone")
+    search_fields = ("firstname", "lastname")
+
+
+@admin.register(ClassRoom)
+class ClassRoomAdmin(admin.ModelAdmin):
+    list_display = ("name", "teacher")
+    list_filter = ("teacher",)
+    search_fields = ("name", "teacher__firstname", "teacher__lastname")
+    autocomplete_fields = ("teacher",)
+    filter_horizontal = ("members",)

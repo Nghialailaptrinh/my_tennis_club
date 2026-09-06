@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+{% block title %}{{ teacher }} | My Study Club{% endblock %}
+{% block content %}
+  <a class="btn btn-outline-secondary btn-sm mb-4" href="{% url 'teachers' %}">&larr; Back to teachers</a>
+  <article class="card shadow-sm">
+    <div class="card-body p-4">
+      <h1>{{ teacher }}</h1>
+      <p>Phone: {{ teacher.phone|default:"Not provided" }}</p>
+      <h2 class="h4 mt-4">Classes</h2>
+      <div class="list-group">
+        {% for classroom in teacher.classes.all %}
+          <a class="list-group-item list-group-item-action" href="{% url 'class_details' classroom.pk %}">{{ classroom.name }}</a>
+        {% empty %}
+          <div class="list-group-item text-secondary">This teacher has no classes yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </article>
+{% endblock %}

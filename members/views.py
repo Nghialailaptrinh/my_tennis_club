@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Member
+from django.shortcuts import get_object_or_404, render
+from .models import ClassRoom, Member, Teacher
 
 
 def members(request):
@@ -33,3 +34,31 @@ def testing(request):
         "mymembers": mydata,
     }
     return HttpResponse(template.render(context, request))
+
+
+def classes(request):
+    return render(request, "all_classes.html", {
+        "classes": ClassRoom.objects.select_related("teacher").order_by("name", "pk"),
+    })
+
+
+def class_details(request, pk):
+    classroom = get_object_or_404(
+        ClassRoom.objects.select_related("teacher").prefetch_related("members"), pk=pk
+    )
+    return render(request, "class_details.html", {"classroom": classroom})
+
+
+def teachers(request):
+    return render(request, "all_teachers.html", {
+        "teachers": Teacher.objects.order_by("firstname", "lastname", "pk"),
+    })
+
+
+def teacher_details(request, pk):
+    teacher = get_object_or_404(Teacher.objects.prefetch_related("classes"), pk=pk)
+    return render(request, "teacher_details.html", {"teacher": teacher})
+
+
+def library(request):
+    return render(request, "library.html")

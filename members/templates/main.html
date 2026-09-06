@@ -5,7 +5,10 @@
 {% block content %}
   <section class="p-4 p-md-5 mb-4 bg-white border rounded-3 shadow-sm text-center">
     <h1 class="display-5 fw-bold">My Study Club</h1>
-    <p class="lead text-secondary mb-4">Welcome to the club member directory.</p>
-    <a class="btn btn-primary btn-lg" href="{% url 'members' %}">View members</a>
+    <p class="lead text-secondary mb-4">Explore our members, classes, teachers and library.</p>
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+      <a class="btn btn-primary btn-lg" href="{% url 'classes' %}">View classes</a>
+      <a class="btn btn-primary btn-lg" href="{% url 'library' %}">Library</a>
+    </div>
   </section>
 {% endblock %}

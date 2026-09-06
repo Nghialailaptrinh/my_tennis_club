@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+{% block title %}{{ classroom.name }} | My Study Club{% endblock %}
+{% block content %}
+  <a class="btn btn-outline-secondary btn-sm mb-4" href="{% url 'classes' %}">&larr; Back to classes</a>
+  <article class="card shadow-sm">
+    <div class="card-body p-4">
+      <h1>{{ classroom.name }}</h1>
+      {% if classroom.teacher %}
+        <p>Teacher: <a href="{% url 'teacher_details' classroom.teacher.pk %}">{{ classroom.teacher }}</a></p>
+      {% endif %}
+      <h2 class="h4 mt-4">Members</h2>
+      <div class="list-group">
+        {% for member in classroom.members.all %}
+          <div class="list-group-item">
+            {% if member.slug %}
+              <a href="{% url 'details' member.slug %}">{{ member }}</a>
+            {% else %}
+              {{ member }}
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="list-group-item text-secondary">There are no members in this class yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </article>
+{% endblock %}

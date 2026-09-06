@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+{% block title %}Teachers | My Study Club{% endblock %}
+{% block content %}
+  <h1>Teachers</h1>
+  <p class="text-secondary">Select a teacher to view their details.</p>
+  <div class="list-group shadow-sm">
+    {% for teacher in teachers %}
+      <a class="list-group-item list-group-item-action py-3" href="{% url 'teacher_details' teacher.pk %}">{{ teacher }}</a>
+    {% empty %}
+      <div class="list-group-item py-4 text-center text-secondary">There are no teachers yet.</div>
+    {% endfor %}
+  </div>
+{% endblock %}
